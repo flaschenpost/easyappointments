@@ -153,12 +153,16 @@ window.FrontendBook = window.FrontendBook || {};
         } else {
             var $selectProvider = $('#select-provider');
             var $selectService = $('#select-service');
+            var bothSet = true;
 
             // Check if a specific service was selected (via URL parameter).
             var selectedServiceId = GeneralFunctions.getUrlParameter(location.href, 'service');
 
             if (selectedServiceId && $selectService.find('option[value="' + selectedServiceId + '"]').length > 0) {
                 $selectService.val(selectedServiceId);
+            }
+            else{
+              bothSet=false;
             }
 
             $selectService.trigger('change'); // Load the available hours.
@@ -184,6 +188,12 @@ window.FrontendBook = window.FrontendBook || {};
                     .val(selectedProviderId)
                     .trigger('change');
             }
+            else{
+              bothSet = false;
+            }
+          if(bothSet){
+            $('#button-next-1').click();
+          }
 
         }
     };
